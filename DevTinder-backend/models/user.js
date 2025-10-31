@@ -53,7 +53,8 @@ const userSchema = new mongoose.Schema({
             if(!validator.isURL(value)){
                 throw new Error('URL is invalid');
             }
-        }
+        },
+        default: 'https://th.bing.com/th/id/OIP.Gy4xTnZ6lXpE7Y-ZLG2QmAHaHa?w=163&h=180&c=7&r=0&o=7&dpr=1.4&pid=1.7&rm=3'
     },
     about: {
         type: String,
