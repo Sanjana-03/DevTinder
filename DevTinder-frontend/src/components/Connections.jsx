@@ -11,7 +11,6 @@ const Connections = () => {
     const fetchConnections = async () => {
         try {
             const res = await axios.get(BASE_URL + '/user/connections', { withCredentials: true });
-            console.log(res.data.connections);
             dispatch(addConnections(res.data.connections));
         } catch (err) {
             setError(err?.response?.data || "Something went wrong");

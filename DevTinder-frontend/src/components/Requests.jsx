@@ -19,13 +19,11 @@ const Requests = () => {
         dispatch(removeRequest(_id))
     } catch (err) {
       console.log(err?.response?.data || "Something went wrong");
-
     }
   }
   const fetchRequests = async () => {
     try {
       const res = await axios.get(BASE_URL + '/user/requests/received', { withCredentials: true });
-      console.log(res.data.data);
       dispatch(addRequests(res.data.data));
     } catch (err) {
       setError(err?.response?.data || "Something went wrong");

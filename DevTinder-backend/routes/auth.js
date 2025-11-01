@@ -58,8 +58,6 @@ router.post('/login', async (req, res) => {
       res.send(user);
     }
     else {
-        console.log('eeeeeeeee');
-        
       throw new Error('Invalid Credentials');
     }
   } catch (err) {
