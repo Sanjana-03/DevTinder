@@ -5,6 +5,9 @@ const app = express();
 const User = require('./models/user');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const http = require('http');
+
+// require('./utils/cronJob');
 
 app.use(cors({
   origin: 'http://localhost:5173',
@@ -17,15 +20,23 @@ const authRouter = require('./routes/auth');
 const profileRouter = require('./routes/profile');
 const requestsRouter = require('./routes/requests');
 const userRouter = require('./routes/user');
+// const paymentRouter = require('./routes/payment');
+const chatRouter = require('./routes/chat');
+const initializeSocket = require('./utils/socket');
 
 app.use("/",authRouter);
 app.use("/",profileRouter);
 app.use("/",requestsRouter);  
 app.use("/",userRouter);  
+app.use("/",chatRouter);  
+ //app.use("/", paymentRouter);
+
+const server = http.createServer(app);
+initializeSocket(server);
 
 connectDB().then(() => {
   console.log("DB connected");
-  app.listen(process.env.PORT, () => {
+  server.listen(process.env.PORT, () => {
     console.log('Server is running on port 3000');
   });
 }).catch((err) => {

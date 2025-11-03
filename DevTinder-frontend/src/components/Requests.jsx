@@ -44,7 +44,7 @@ const Requests = () => {
       {requests.map((request) => {
         const { _id, firstName, lastName, photoUrl, age, gender, about, skills } = request.fromUserId;
         return (
-          <div className='flex justify-between items-center m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto'>
+          <div className='flex justify-between items-center m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto' key={_id}>
             <div>
               <img src={photoUrl} alt="photo" className='mx-auto w-32 h-32 rounded-full object-cover' />
             </div>

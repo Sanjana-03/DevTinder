@@ -3,6 +3,7 @@ import { BASE_URL } from '../utils/constants';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { addConnections } from '../utils/connectionsSlice';
+import { Link } from 'react-router-dom';
 const Connections = () => {
     const [error, setError] = useState("");
     const dispatch = useDispatch();
@@ -29,9 +30,9 @@ const Connections = () => {
             <h1 className='text-bold text-3xl'>Connections</h1>
 
             {connections.map((conn) => {
-                const { firstName, lastName, photoUrl, age, gender, about, skills } = conn;
+                const { _id,firstName, lastName, photoUrl, age, gender, about, skills } = conn;
                 return (
-                    <div className='flex m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto'>
+                    <div className='flex m-4 p-4 rounded-lg bg-base-300 w-1/3 mx-auto' key={_id}>
                         <div>
                             <img src={photoUrl} alt="photo" className='mx-auto w-32 h-32 rounded-full object-cover' />
                         </div>
@@ -39,9 +40,8 @@ const Connections = () => {
                             <h1 className='font-bold text-xl'>{firstName + " " + lastName}</h1>
                             {age && gender && <p>{age + "," + gender}</p>}
                             <p>{about}</p>
-                            
                         </div>
-                        
+                       <Link to={"/chat/"+ _id}><button className='btn btn-primary align-right'>Chat</button></Link> 
                     </div>
                 )
             })}
